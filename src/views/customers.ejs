@@ -1,0 +1,58 @@
+<% include partials/_header %>
+
+<div class="mt-5" style="margin-left: 10px;" >
+  <div class="row">
+    <div class="col-md-7">
+      <h1>Mis contactos</h1>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>N°</td>
+            <td>Nombre</td>
+            <td>Correo</td>
+            <td>Número</td>
+            <td>Acciones</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= data[i].name %></td>
+                <td><%= data[i].address %></td>
+                <td><%= data[i].phone %></td>
+                <td>
+                  <a href="/update/<%= data[i].id %>" class="btn button btn-success">Editar</a>
+                  <a href="/delete/<%= data[i].id %>" class="btn button btn-danger">Eliminar</a>
+                </td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-5" style="margin-left: 0px;">
+        <h1>Nuevo contacto</h1>
+      <div class="card-body">
+        <form action="/add" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Nombre" class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+            <input type="email" name="address" placeholder="Correo" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="phone" placeholder="Número" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-warning">
+            Guardar contacto
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/_footer %>
